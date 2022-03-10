@@ -1,8 +1,8 @@
 import os.path
 
-
 DATABASE_FILE_PATH = os.path.join(os.getcwd(), 'test.db')
 FIXTURE_BASE_DIR = 'fixtures'
+
 
 class Config:
     SQLALCHEMY_DATABASE_URI = f'sqlite:///{DATABASE_FILE_PATH}'
