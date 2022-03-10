@@ -12,7 +12,7 @@ def create_app():
 
     with app.app_context():
         from app import routes
-        db.drop_all()
+
         db.create_all()
 
         from app import migrate
