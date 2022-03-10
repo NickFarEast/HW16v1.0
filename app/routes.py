@@ -140,3 +140,45 @@ def delete_order(order_id):
     db.session.commit()
 
     return {}
+
+
+@app.route('/offers', methods=['POST'])
+def create_offer():
+    """Функция для создания нового предложения в базе"""
+
+    data = request.json
+
+    db.session.add(models.Offer(**data))
+    db.session.commit()
+
+    return {}
+
+
+@app.route('/offers/<int:offer_id>', methods=['PUT'])
+def change_offer(offer_id):
+    """Функция для внесения изменений в информацию о предложении по id """
+    data = request.json
+
+    user = db.session.query(models.Offer).filter(models.Offer.id == offer_id).first()
+    if user is None:
+        abort(404)
+
+    db.session.query(models.Offer).filter(models.Offer.id == offer_id).update(data)
+    db.session.commit()
+
+    return {}
+
+
+@app.route('/offers/<int:offer_id>', methods=['DELETE'])
+def delete_offer(offer_id):
+    """Функция для удаления предложения из базы по id"""
+
+    result = db.session.query(models.Offer).filter(models.Offer.id == offer_id).delete()
+
+    if result == 0:
+        abort(404)
+
+    db.session.commit()
+
+    return {}
+

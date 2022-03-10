@@ -12,7 +12,7 @@ def create_app():
 
     with app.app_context():
         from app import routes
-
+        db.drop_all()
         db.create_all()
 
         from app import migrate
@@ -21,3 +21,4 @@ def create_app():
         migrate.migrate_orders(app.config['ORDERS_FIXTURE_PATH'])
         migrate.migrate_offers(app.config['OFFERS_FIXTURE_PATH'])
         return app
+

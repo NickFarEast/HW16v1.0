@@ -84,3 +84,4 @@ class Offer(db.Model):
             "order_id": offer.order_id,
             "executor_id": offer.executor_id
         }
+
