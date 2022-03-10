@@ -14,6 +14,22 @@ class User(db.Model):
     role = db.Column(db.String(200))
     phone = db.Column(db.String(16), unique=True)
 
+    def dict_template(user):
+
+        """
+        Serialize implementation
+        """
+        return {
+            "id": user.id,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "age": user.age,
+            "email": user.email,
+            "role": user.role,
+            "phone": user.phone
+        }
+
+
 
 class Order(db.Model):
     __tablename__ = 'orders'
